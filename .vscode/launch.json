@@ -53,9 +53,9 @@
         ""
       ],
       "stopAtEntry": false,
-      "cwd": "/home/linux/Dokumente/Course/UdemyC/Chapter1_Introduction",
+      "cwd": "/home/linux/Dokumente/Course/UdemyC/0_LerningByDoing",
       "environment": [],
-      "program": "/home/linux/Dokumente/Course/UdemyC/Chapter1_Introduction/build/Debug/outDebug",
+      "program": "/home/linux/Dokumente/Course/UdemyC/0_LerningByDoing/build/Debug/outDebug",
       "internalConsoleOptions": "openOnSessionStart",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
