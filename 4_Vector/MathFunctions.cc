@@ -22,14 +22,14 @@ void double_vector_exp(std::vector<double> &vec)
 {
     for (std::size_t i = 0; i < vec.size(); i++)
     {
-        vec[i] = exp(vec[i]);
+        vec[i] = std::exp(vec[i]);
     }
 }
 void double_vector_log(std::vector<double> &vec)
 {
     for (std::size_t i = 0; i < vec.size(); i++)
     {
-        vec[i] = log(vec[i]);
+        vec[i] = std::log(vec[i]);
     }
 }
 int main()

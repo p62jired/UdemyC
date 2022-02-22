@@ -31,5 +31,6 @@ clean:
 	rm -rf Chapter15_Advanced2/*.o
 	rm -rf Chapter16_SimpleCSVReader/*.exe
 	rm -rf Chapter16_SimpleCSVReader/*.o
-
+	rm -rf 5_String/*.exe
+	rm -rf 5_String/*.o
 .phony: clean
