@@ -1,0 +1,17 @@
+------------std::vector------------
+1) std::vector is a sequence container that encapsulates dynamic size arrays
+
+Create a vector containing integers
+    std::vector<int> v = {7, 5, 16, 8};
+or 10 int element with value =0
+    std::vector<int> my_vector(10, 0);
+or
+std::vector<std::string> game_state(5, std::string(5, '.'));
+game_state[0][0] = '|';
+game_state[5][5] = '|';
+
+//////////////////////////////////////////////////////
+If we have a function that is called in a for loop and within them we need to
+declare some variables, the smartest thing to do is to declare these variables
+as static. This way they are only created once. It would have the same effect as
+declaring in the global scope.

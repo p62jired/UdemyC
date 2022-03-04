@@ -21,7 +21,7 @@ void print_vector_info(std::vector<int> &vec)
 int main()
 {
 
-    std::vector<int> my_vector(10, 5);
+    std::vector<int> my_vector(10, 0);
     std::iota(my_vector.begin(), my_vector.end(), 0);
     print_vector(my_vector);
     int first = my_vector.front();

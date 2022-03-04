@@ -6,9 +6,10 @@
 
 #include "exercise.h"
 
+
 int main()
 {
-    // Exercise 1
+    // Exercise
     Friends friends;
 
     friends["Jan"] = std::pair<int, int>(23, 68);

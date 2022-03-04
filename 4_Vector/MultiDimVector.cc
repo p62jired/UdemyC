@@ -5,7 +5,7 @@ void print_matrix(const std::vector<std::vector<int>> &matrix)
 {
     for (std::size_t i = 0; i < matrix.size(); i++)
     {
-        for (std::size_t j = 0; i < matrix[i].size(); j++)
+        for (std::size_t j = 0; i < matrix[j].size(); j++)
         {
             std::cout << "Matrix[" << i << "," << j << "]=" << matrix[i][j] << std::endl;
         }
