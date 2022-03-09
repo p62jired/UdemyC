@@ -15,3 +15,11 @@ If we have a function that is called in a for loop and within them we need to
 declare some variables, the smartest thing to do is to declare these variables
 as static. This way they are only created once. It would have the same effect as
 declaring in the global scope.
+
+///////////////////Threads////////////////////////////
+
+Avoid to writte in a global variable from more than one thread. It happends that
+the one thread read an old value from this variable.
+
+The solution to this problem is to lock the variable while one thread use this
+global variable. Disavangtage from that is that the other threads muss be paused.

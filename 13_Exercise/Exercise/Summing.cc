@@ -10,7 +10,16 @@
 
 #include "Timer.h"
 
-constexpr std::uint32_t NUM_THREADS = 2;
+/*
+Serial time: 8.24
+2: Own time: 6,24
+3: Own time: 6,40
+3: Own time: 6,24
+3: Own time: 6,24
+3: Own time: 6,24
+*/
+
+constexpr std::uint32_t NUM_THREADS = 4;
 constexpr std::uint32_t NUM_RUNS = 1'000;
 
 template <typename T>
@@ -42,6 +51,44 @@ T serial_sum(std::vector<T> &vec)
 
     return local_sum;
 }
+template <typename It, typename T>
+void sum_slice(It first, It last, T &result)
+{
+    result = std::accumulate(first, last, T{});
+}
+
+template <typename T>
+T parallel_sum(std::vector<T> &vec)
+{
+    T final_sum = 0;
+    std::array<T, NUM_THREADS> local_sums{};
+    std::array<std::thread, NUM_THREADS> threads;
+    auto prev_last = vec.begin();
+    auto slice_size = static_cast<std::uint32_t>(vec.size()) / NUM_THREADS;
+
+    for (std::uint32_t i = 0; i < NUM_THREADS; i++)
+    {
+        auto first = prev_last;
+        auto last = prev_last + slice_size;
+        if (i == (NUM_THREADS - 1))
+        {
+            last = vec.end();
+        }
+        threads[i] = std::thread(sum_slice<typename std::vector<T>::iterator, T>, first, last, std::ref(local_sums[i]));
+        prev_last = prev_last + slice_size;
+    }
+
+    for (auto &thread : threads)
+    {
+        thread.join();
+    }
+
+    for (const auto local_sum : local_sums)
+    {
+        final_sum += local_sum;
+    }
+    return final_sum;
+}
 
 int main()
 {
@@ -57,6 +104,17 @@ int main()
         time1 += t1.elapsed_time<cpptiming::millisecs, double>();
     }
     std::cout << "Mean Serial: " << time1 / NUM_RUNS << "ms sum: " << sum1 << std::endl;
+
+
+    auto time3 = 0.0;
+    volatile std::int32_t sum3 = 0;
+    for (std::uint32_t i = 0; i < NUM_RUNS; ++i)
+    {
+        cpptiming::Timer t3;
+        sum3 = parallel_sum(my_vector);
+        time3 += t3.elapsed_time<cpptiming::millisecs, double>();
+    }
+    std::cout << "Own MT: " << time3 / NUM_RUNS << "ms sum: " << sum3 << std::endl;
 
     return 0;
 }

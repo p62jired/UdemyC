@@ -36,7 +36,7 @@ int main()
     {
         t2.join();
     }
-    std::cout << "Number2 in main:" << number2 << "\n";
+    std::cout << "Number2 in main: " << number2 << "\n";
     int number3 = 1;
     std::thread t3(function3, std::ref(number3));
 
@@ -44,6 +44,6 @@ int main()
     {
         t3.join();
     }
-    std::cout << "Number3 in main:" << number3 << "\n";
+    std::cout << "Number3 in main: " << number3 << "\n";
     return 0;
 }
